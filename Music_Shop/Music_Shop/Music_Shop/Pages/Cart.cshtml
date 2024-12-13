@@ -1,0 +1,49 @@
+﻿@page
+@model CartModel
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<div class="container">
+    <h1>Корзина</h1>
+
+    @if (Model.CartItems != null && Model.CartItems.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Альбом</th>
+                    <th>Количество</th>
+                    <th>Цена</th>
+                    <th>Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CartItems)
+                {
+                    <tr>
+                        <td>@item.Album.AlbumTitle</td>
+                        <td>@item.Quantity</td>
+                        <td>@(item.Quantity * item.Album.Price) руб.</td>
+                        <td>
+                            <form method="post" asp-page-handler="Remove">
+                                <input type="hidden" name="cartItemId" value="@item.Id" />
+                                <button class="btn btn-danger btn-sm">Удалить</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <form method="post" asp-page-handler="Clear">
+            <button class="btn btn-warning">Очистить корзину</button>
+        </form>
+    }
+    else
+    {
+        <p>Ваша корзина пуста.</p>
+    }
+</div>
+
+

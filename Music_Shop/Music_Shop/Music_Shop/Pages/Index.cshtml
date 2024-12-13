@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <!-- Заменено на логотип -->
+    <img src="~/images/logo.svg" alt="Music Shop Logo" class="img-fluid" style="max-width: 200px; height: auto;" />
+    <p>Добро пожаловать в Ваш музыкальный магазин!</p>
+
+    <div class="btn-group mt-3" role="group">
+        <a class="btn btn-primary" href="/Login">Войти </a>
+        <a class="btn btn-secondary" href="/Register">Зарегистрироваться</a>
+    </div>
+
+    <h2 class="mt-5">Новинки этой недели</h2>
+
+    <!-- Карусель -->
+    <div id="carouselExampleIndicators" class="carousel slide mt-3" data-bs-ride="carousel" data-bs-interval="3000">
+        <div class="carousel-indicators">
+            @for (int i = 0; i < Model.Albums.Count; i++)
+            {
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-current="true" aria-label="Slide @(i + 1)"></button>
+            }
+        </div>
+        <div class="carousel-inner">
+            @foreach (var album in Model.Albums)
+            {
+                <div class="carousel-item @(Model.Albums.IndexOf(album) == 0 ? "active" : "")">
+                    <a href="/AlbumDetails?id=@album.Id">
+                        <img src="data:image/jpeg;base64,@Convert.ToBase64String(album.AlbumCover)" class="d-block w-100" alt="@album.AlbumTitle">
+                    </a>
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>@album.AlbumTitle</h5>
+                        <p>Артист: @album.Artist | Жанр: @album.Genre</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+
+
+

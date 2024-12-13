@@ -1,0 +1,54 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="text-center">
+    <h2>Вход</h2>
+
+    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+    {
+        <div class="alert alert-danger" role="alert">
+            @Model.ErrorMessage
+        </div>
+    }
+
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="login" aria-label="Введите логин">Логин</label>
+            <input type="text" class="form-control" id="login" name="login" placeholder="Введите логин" autocomplete="username" required />
+        </div>
+        <div class="form-group">
+            <label for="password" aria-label="Введите пароль">Пароль</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль" autocomplete="current-password" required />
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword()">👁</button>
+            </div>
+            <small class="form-text text-muted">
+                Пароль должен быть не менее 6 символов, содержать хотя бы одну цифру и один специальный символ (!, # и т.д.).
+            </small>
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
+    </form>
+
+    <p class="mt-3">
+        <a href="/Register">Регистрация</a> |
+        <a href="/ForgotPassword">Забыли пароль?</a>
+    </p>
+</div>
+
+@section Scripts {
+    <script>
+        // Скрытие/показ пароля
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+        }
+    </script>
+}
+
+
+  

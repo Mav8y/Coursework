@@ -1,0 +1,36 @@
+﻿@page
+@model UploadMusicModel
+@{
+    ViewData["Title"] = "Upload Music";
+}
+
+<h2>Upload Music</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="artist">Artist</label>
+        <input type="text" id="artist" name="Artist" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="albumTitle">Album Title</label>
+        <input type="text" id="albumTitle" name="AlbumTitle" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" name="Genre" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="price">Price (RUB)</label>
+        <input type="number" id="price" name="Price" class="form-control" required step="0.01" />
+    </div>
+    <div class="form-group">
+        <label for="albumCover">Album Cover</label>
+        <input type="file" id="albumCover" name="AlbumCover" class="form-control" accept="image/*" required />
+    </div>
+    <div class="form-group">
+        <label for="tracks">Tracks (MP3)</label>
+        <input type="file" id="tracks" name="Tracks" class="form-control" accept=".mp3" multiple required />
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+

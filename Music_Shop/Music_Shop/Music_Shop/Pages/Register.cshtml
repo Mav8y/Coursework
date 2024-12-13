@@ -1,0 +1,49 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="text-center">
+    <h2>Регистрация</h2>
+    <form method="post">
+        <div class="form-group">
+            <label for="login">Логин</label>
+            <input type="text" class="form-control" id="login" name="login" placeholder="Введите логин" required />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Введите email" required />
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Введите пароль" required />
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('password')">👁</button>
+            </div>
+            <small class="form-text text-muted">
+                Пароль должен быть не менее 6 символов, содержать хотя бы одну цифру и один специальный символ (!, # и т.д.).
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Подтвердите пароль</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Подтвердите пароль" required />
+                <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirmPassword')">👁</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary">Зарегистрироваться</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Функция для показа/скрытия пароля
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+        }
+    </script>
+}
+

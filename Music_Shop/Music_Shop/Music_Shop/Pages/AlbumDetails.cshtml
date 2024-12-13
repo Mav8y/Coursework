@@ -1,0 +1,36 @@
+﻿@page "{id:int}"
+@model AlbumDetailsModel
+@{
+    ViewData["Title"] = "Album Details";
+}
+
+<div class="text-center">
+    <h1>@Model.AlbumDetails.AlbumTitle</h1>
+    <h3>by @Model.AlbumDetails.Artist</h3>
+    <p>Genre: @Model.AlbumDetails.Genre</p>
+    <p>Price: @Model.AlbumDetails.Price руб.</p>
+
+    <!-- Обложка альбома -->
+    <div class="album-cover">
+        <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.AlbumDetails.AlbumCover)" alt="Album Cover" class="img-fluid rounded" style="max-width: 300px;">
+    </div>
+
+    <hr />
+
+    <h2>Tracks</h2>
+    <ul>
+        @foreach (var track in Model.Tracks)
+        {
+            <li>
+                @track.TrackName
+                <audio controls>
+                    <source src="data:audio/mpeg;base64,@Convert.ToBase64String(track.TrackData)" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </li>
+        }
+    </ul>
+</div>
+
+
+

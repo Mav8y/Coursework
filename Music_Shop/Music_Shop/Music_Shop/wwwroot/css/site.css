@@ -1,0 +1,132 @@
+/* Глобальные стили */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* Стили для меню профиля */
+.user-menu {
+    position: relative;
+}
+
+.user-icon {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+}
+
+    .user-icon:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: #007bff;
+    }
+
+.dropdown-menu {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    display: none; /* По умолчанию скрыто */
+    min-width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+    opacity: 0; /* Прозрачность по умолчанию */
+    transform: translateY(-10px); /* Сдвиг вверх */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Плавный эффект */
+}
+
+    .dropdown-menu.show {
+        display: block;
+        opacity: 1; /* Показываем меню */
+        transform: translateY(0); /* Убираем сдвиг */
+    }
+
+.dropdown-item {
+    padding: 10px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+}
+
+    .dropdown-item:hover {
+        background-color: #f8f9fa;
+    }
+
+/* Стили для аватара */
+.avatar-container {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+}
+
+.avatar-container input[type="file"] {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .avatar-container input[type="file"]:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        top: 50px;
+        right: 10px;
+        min-width: 120px;
+    }
+
+    .avatar-container {
+        width: 80px;
+        height: 80px;
+    }
+
+        .avatar-container input[type="file"] {
+            bottom: 5px;
+            right: 5px;
+            padding: 5px;
+        }
+}
